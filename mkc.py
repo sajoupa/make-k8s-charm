@@ -21,15 +21,15 @@ def make_skeleton(application):
         os.mkdir('{}/{}'.format(rootdir,subdir))
 
     print("Adding submodules ...")
-    os.system("git -C {} init".format(rootdir))
-    os.system("git -C {} submodule add https://github.com/johnsca/resource-oci-image mod/resource-oci-image".format(rootdir))
-    os.system("git -C {} submodule add https://github.com/canonical/operator mod/operator".format(rootdir))
+    os.system("git -C {} init -q".format(rootdir))
+    os.system("git -C {} submodule -q add https://github.com/johnsca/resource-oci-image mod/resource-oci-image".format(rootdir))
+    os.system("git -C {} submodule -q add https://github.com/canonical/operator mod/operator".format(rootdir))
     print("Generating symlinks ...")
     os.system("ln -s ../src/charm.py {}/hooks/start".format(rootdir))
     os.system("ln -s ../mod/operator/ops {}/lib/ops".format(rootdir))
     os.system("ln -s ../mod/resource-oci-image/oci_image.py {}/lib/oci_image.py".format(rootdir))
     print("Making initial commit.")
-    os.system("git -C {} commit -a -m 'initial commit'".format(rootdir))
+    os.system("git -C {} commit -q -a -m 'initial commit'".format(rootdir))
     print("Done creating skeleton structure for {}".format(rootdir))
 
 def render_templates(config, templates_path):
@@ -53,7 +53,8 @@ def render_templates(config, templates_path):
             os.system("chmod 755 {}/src/charm.py".format(rootdir))
 
     print("Committing generated charm ...")
-    os.system("cd {} ; git add . ; git commit -a -m 'Automatically generated charm files.'".format(rootdir))
+    os.system("cd {} ; git add . ; git commit -q -a -m 'Automatically generated charm files.'".format(rootdir))
+    print("Done.")
 
 
 def main():
