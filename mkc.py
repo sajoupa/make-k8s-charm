@@ -53,7 +53,7 @@ def render_templates(config, templates_path):
             os.system("chmod 755 {}/src/charm.py".format(rootdir))
 
     print("Committing generated charm ...")
-    os.system("git -C {} commit -a -m 'Automatically generated charm files.'".format(rootdir))
+    os.system("cd ../{} ; git add . ; git commit -a -m 'Automatically generated charm files.'".format(rootdir))
 
 
 def main():
