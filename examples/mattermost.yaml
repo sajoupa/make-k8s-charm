@@ -1,0 +1,48 @@
+application: mattermost
+variables:
+    mattermost_port:
+        envvar: MATTERMOST_HTTPD_LISTEN_PORT
+        juju_config:
+            type: int
+            description: The port number for Mattermost to listen to.
+            default: 8000
+    open_server:
+        envvar: MM_ENABLEOPENSERVER
+        juju_config:
+            type: boolean
+            description: Allows users to sign up from the root page without an invite.
+            default: false
+    pg_db_host:
+        envvar: DB_HOST
+        juju_config:
+            type: string
+            description: The hostname or IP of the postgresql backend.
+            default: ''
+    pg_db_port:
+        envvar: pg_db_port
+        juju_config:
+            type: int
+            description: The port number for the postgresql backend.
+            default: 5432
+    pg_user:
+        envvar: MM_USERNAME
+        juju_config:
+            type: string
+            description: The postgresql user.
+            default: 'mattermost'
+    pg_password:
+        envvar: MM_PASSWORD
+        juju_config:
+            type: string
+            description: The postgresql password.
+            default: ''
+    enable_plugin_uploads:
+        envvar: MM_ENABLEUPLOADS
+        juju_config:
+            type: boolean
+            description: Allow plugin uploads.
+            default: false
+readme: |
+    # Mattermost charm
+    A juju charm deploying Mattermost, using a custom-built built image,
+    configurable to use a postgresql backend.

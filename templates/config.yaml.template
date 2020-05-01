@@ -1,0 +1,5 @@
+options:
+{%- for key, value in config.variables.items() %}
+    {{ key }}:
+        {{ value.juju_config }}
+{%- endfor %}

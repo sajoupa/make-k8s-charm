@@ -26,14 +26,26 @@ turns juju config items into environment variables:
 This tool will implement that, taking as input a yaml file describing only the
 things which are specific to each charm.
 
+Example:
+
 ```yaml
-{
-    "application": "myapp",
-    "variables": {
-        "ENV_VAR1": "config1",
-        "ENV_VAR2": "config2",
-    }
-}
+application: myapp
+variables:
+    config1:
+        envvar: ENV_VAR1
+        juju_config: |
+            type: boolean
+            description: first var
+            default: true
+    config2:
+        envvar: ENV_VAR2
+        juju_config: |
+            type: int
+            description: second var
+            default: 42
+readme: |
+    # MyApp Charm
+    The charm deploys myapp, a really cool app, on kubernetes using the Operator Framework.
 ```
 
 From there, the charm can be improved to add more advanced features such as
