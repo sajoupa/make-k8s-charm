@@ -1,0 +1,12 @@
+application: bitlbee
+variables:
+    bitlbee_port:
+        envvar: BITLBEE_PORT
+        juju_config:
+            type: int
+            description: The port number for bitlbee to listen to.
+            default: 6667
+readme: |
+    # Bitlbee charm
+    A juju charm deploying Bitlbee with libpurple support.
+    It also embedds the libraries for telegram and mattermost !
