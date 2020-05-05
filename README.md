@@ -26,7 +26,7 @@ turns juju config items into environment variables:
 This tool will implement that, taking as input a yaml file describing only the
 things which are specific to each charm.
 
-Example:
+## Example - create a charm
 
 ```yaml
 application: myapp
@@ -68,5 +68,16 @@ Committing generated charm ...
 Done.
 ```
 
+## Example - deploy the generated charm
+
+Deploy the charm to a k8s model, specifying the image to use:
+
+```
+cd ../myapp-k8s-charm
+juju deploy . --resource myapp_image='path_to_image:tag'
+```
+
+## Next steps
+
 From there, the charm can be improved to add more advanced features such as
-relations.
+relations - but this is a different topic not covered by this tool.
